@@ -5,7 +5,7 @@ import Register from './Component/Register.jsx';
 function App() {
   return (
     <>
-    <Register/>
+    <Login/>
     </>
   );
 }
