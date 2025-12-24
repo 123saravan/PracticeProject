@@ -7,7 +7,7 @@ function Login() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (email === "admin@gmail.com" && password === "12345") {
+    if (email === "@gmail.com" && password === "") {
 
       
       setMsg("Login Successful");
@@ -17,6 +17,7 @@ function Login() {
   };
 
   return (
+    <div className="login-container">
     <form onSubmit={handleSubmit}>
       <input
         type="email"
@@ -31,6 +32,7 @@ function Login() {
       <button type="submit">Login</button>
       <p>{msg}</p>
     </form>
+    </div>
   );
 }
 
