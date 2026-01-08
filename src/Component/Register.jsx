@@ -1,17 +1,22 @@
 import React, { useState } from 'react';
-import { Eye, Plus } from 'lucide-react';
+import { Eye, EyeOff, Plus } from 'lucide-react';
 import '../Style/Register.css';
 
 const Register = () => {
   const initialState = { name: '', lastName: '', email: '', password: '', repeat: '' };
   const [formData, setFormData] = useState(initialState);
-  const [error, setError] = useState(''); 
+  const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
-  
+  const [showPassword, setShowPassword] = useState(false);
+
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
-    if (error) setError(''); 
+    if (error) setError('');
     if (success) setSuccess('');
+  };
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(prev => !prev);
   };
 
   const handleSubmit = (e) => {
@@ -57,16 +62,69 @@ const Register = () => {
               <input type="text" name="lastName" placeholder="Last Name" value={formData.lastName} onChange={handleChange} />
             </div>
             <input type="email" name="email" placeholder="Email" className="full-width" value={formData.email} onChange={handleChange} required />
+<<<<<<< HEAD
             <div className="input-row">
               <div className="pass-box">
-                <input type="password" name="password" placeholder="Password" value={formData.password} onChange={handleChange} required />
-                <Eye className="eye-icon" size={16}/>
+                <input
+                  type={showPassword ? 'text' : 'password'}
+                  name="password"
+                  placeholder="Password"
+                  value={formData.password}
+                  onChange={handleChange}
+                  required
+                />
+                <span onClick={togglePasswordVisibility} style={{ cursor: 'pointer' }}>
+                  {showPassword ? <EyeOff size={16} className="eye-icon" /> : <Eye size={16} className="eye-icon" />}
+                </span>
               </div>
               <div className="pass-box">
-                <input type="password" name="repeat" placeholder="Repeat" value={formData.repeat} onChange={handleChange} required />
-                <Eye className="eye-icon" size={16}/>
+                <input
+                  type={showPassword ? 'text' : 'password'}
+                  name="repeat"
+                  placeholder="Repeat"
+                  value={formData.repeat}
+                  onChange={handleChange}
+                  required
+                />
+                <span onClick={togglePasswordVisibility} style={{ cursor: 'pointer' }}>
+                  {showPassword ? <EyeOff size={16} className="eye-icon" /> : <Eye size={16} className="eye-icon" />}
+                </span>
               </div>
             </div>
+=======
+            
+            <div className="input-row">
+              {/* --- CHANGES MADE HERE --- */}
+              <div className="pass-box">
+                <input 
+                  type={showPassword ? "text" : "password"} // CHANGE 1: Use the state
+                  name="password" 
+                  placeholder="Password" 
+                  value={formData.password} 
+                  onChange={handleChange} 
+                  required 
+                />
+                <span onClick={togglePasswordVisibility} style={{ cursor: 'pointer' }}>
+                  {showPassword ? <EyeOff size={16} className="eye-icon"/> : <Eye size={16} className="eye-icon"/>}
+                </span>
+              </div>
+
+              <div className="pass-box">
+                <input 
+                  type={showPassword ? "text" : "password"} // CHANGE 2: Use the state
+                  name="repeat" 
+                  placeholder="Repeat" 
+                  value={formData.repeat} 
+                  onChange={handleChange} 
+                  required 
+                />
+                <span onClick={togglePasswordVisibility} style={{ cursor: 'pointer' }}>
+                  {showPassword ? <EyeOff size={16} className="eye-icon"/> : <Eye size={16} className="eye-icon"/>}
+                </span>
+              </div>
+            </div>
+
+>>>>>>> e1aed918fc67f4c13e043267245f654b8ec9c430
             <div className="message-area">
               {error && <div className="error-text">{error}</div>}
               {success && <div className="success-text">{success}</div>}
